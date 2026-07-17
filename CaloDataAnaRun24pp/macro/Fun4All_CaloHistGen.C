@@ -28,7 +28,7 @@ R__LOAD_LIBRARY(libffarawobjects.so)
 R__LOAD_LIBRARY(libcaloHistGen.so)
 
 
-void Fun4All_CaloHistGen(const int nEvents = 1000, const std::string &fnameCalo = "DST_CALOFITTING_run3auau_new_newcdbtag_v008-00066484-00000.root", const std::string &outName = "commissioning.root", const std::string &dbtag = "ProdA_2024")//Constructor for Run 25 Au+Au
+void Fun4All_CaloHistGen(const int nEvents = 1000, const std::string &fnameCalo = "DST_CALOFITTING_run3auau_new_newcdbtag_v008-00068042-00000.root", const std::string &outName = "commissioning.root", const std::string &dbtag = "ProdA_2024")//Constructor for Run 25 Au+Au
 //void Fun4All_CaloHistGen(const int nEvents = 1000, const std::string &fnameCalo = "DST_CALOFITTING_run2pp_ana509_2024p022_v001-00047334-00022.root", const std::string &outName = "commissioning.root", const std::string &dbtag = "ProdA_2024")//Constructor for Run 24 p+p
 {
   Fun4AllServer *se = Fun4AllServer::instance();
