@@ -1,27 +1,26 @@
-#ifndef MACRO_FUN4ALL_CALOTREEGEN_C
-#define MACRO_FUN4ALL_CALOTREEGEN_C
+#ifndef MACRO_FUN4ALL_CALOTHISTGEN_C
+#define MACRO_FUN4ALL_CALOTHISTGEN_C
+
+#include <Calo_Calib.C>
+
+#include <calohistgen/caloHistGen.h>
+
+#include <mbd/MbdReco.h>
+
+#include <globalvertex/GlobalVertexReco.h>
 
 #include <ffamodules/CDBInterface.h>
-#include <fun4all/Fun4AllUtils.h>
 
+#include <fun4all/Fun4AllUtils.h>
 #include <fun4all/Fun4AllDstInputManager.h>
 #include <fun4all/Fun4AllInputManager.h>
 #include <fun4all/Fun4AllServer.h>
 #include <fun4all/SubsysReco.h>
-
 #include <fun4all/Fun4AllDstOutputManager.h>
 #include <fun4all/Fun4AllOutputManager.h>
-#include <fun4all/Fun4AllServer.h>
-
-#include <mbd/MbdReco.h>
 
 #include <phool/PHRandomSeed.h>
 #include <phool/recoConsts.h>
-#include <globalvertex/GlobalVertexReco.h>
-
-#include <calohistgen/caloHistGen.h>
-
-#include <Calo_Calib.C>
 
 R__LOAD_LIBRARY(libfun4all.so)
 R__LOAD_LIBRARY(libffarawobjects.so)
@@ -36,7 +35,7 @@ void Fun4All_CaloHistGen(const int nEvents = 1000, const std::string &fnameCalo 
   se->Verbosity(0);
   recoConsts *rc = recoConsts::instance();
   
-  pair<int, int> runseg = Fun4AllUtils::GetRunSegment(fnameCalo);
+  std::pair<int, int> runseg = Fun4AllUtils::GetRunSegment(fnameCalo);
   int runnumber = runseg.first;
 
   bool isAuAu = false;
