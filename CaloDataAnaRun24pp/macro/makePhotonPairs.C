@@ -1,5 +1,11 @@
 #include <sPhenixStyle.C>
 
+#include <TCanvas.h>
+#include <TFile.h>
+#include <TH1.h>
+#include <TLorentzVector.h>
+#include <TTree.h>
+
 void makePhotonPairs(const std::string &fin = "commissioning.root")
 {
   SetsPhenixStyle();
@@ -7,14 +13,14 @@ void makePhotonPairs(const std::string &fin = "commissioning.root")
 
   TTree *T = (TTree *) f->Get("T");
 
-  std::vector<float> *clusterE{0};
-  std::vector<float> *clusterPhi{0};
-  std::vector<float> *clusterEta{0};
-  std::vector<float> *clusterPt{0};
-  std::vector<float> *clusterChi2{0};
-  std::vector<float> *clusterNtow{0};
-  std::vector<float> *clusterTowMaxE{0};
-  std::vector<float> *clusterECore{0};
+  std::vector<float> *clusterE{nullptr};
+  std::vector<float> *clusterPhi{nullptr};
+  std::vector<float> *clusterEta{nullptr};
+  std::vector<float> *clusterPt{nullptr};
+  std::vector<float> *clusterChi2{nullptr};
+  std::vector<float> *clusterNtow{nullptr};
+  std::vector<float> *clusterTowMaxE{nullptr};
+  std::vector<float> *clusterECore{nullptr};
 
   T->SetBranchAddress("clusterE", &clusterE);
   T->SetBranchAddress("clusterPhi", &clusterPhi);
@@ -67,4 +73,5 @@ void makePhotonPairs(const std::string &fin = "commissioning.root")
   }
   TCanvas *cMass = new TCanvas("cMass", "cMass");
   mass->Draw("ep");
+  cMass->Update();
 }

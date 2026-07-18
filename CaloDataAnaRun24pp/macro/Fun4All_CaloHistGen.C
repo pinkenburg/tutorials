@@ -1,41 +1,41 @@
-#ifndef MACRO_FUN4ALL_CALOTREEGEN_C
-#define MACRO_FUN4ALL_CALOTREEGEN_C
+#ifndef MACRO_FUN4ALL_CALOTHISTGEN_C
+#define MACRO_FUN4ALL_CALOTHISTGEN_C
+
+#include <Calo_Calib.C>
+
+#include <calohistgen/caloHistGen.h>
+
+#include <mbd/MbdReco.h>
+
+#include <globalvertex/GlobalVertexReco.h>
 
 #include <ffamodules/CDBInterface.h>
-#include <fun4all/Fun4AllUtils.h>
 
+#include <fun4all/Fun4AllUtils.h>
 #include <fun4all/Fun4AllDstInputManager.h>
 #include <fun4all/Fun4AllInputManager.h>
 #include <fun4all/Fun4AllServer.h>
 #include <fun4all/SubsysReco.h>
-
 #include <fun4all/Fun4AllDstOutputManager.h>
 #include <fun4all/Fun4AllOutputManager.h>
-#include <fun4all/Fun4AllServer.h>
-
-#include <mbd/MbdReco.h>
 
 #include <phool/PHRandomSeed.h>
 #include <phool/recoConsts.h>
-#include <globalvertex/GlobalVertexReco.h>
-
-#include <calohistgen/caloHistGen.h>
-
-#include <Calo_Calib.C>
 
 R__LOAD_LIBRARY(libfun4all.so)
 R__LOAD_LIBRARY(libffarawobjects.so)
 R__LOAD_LIBRARY(libcaloHistGen.so)
 
+// For Run 2 pp use fnameCalo = DST_CALOFITTING_run2pp_pro001_pcdb001_v001-00047334-00000.root
+// For Run 3 auau use fnameCalo = DST_CALOFITTING_run3auau_pro001_pcdb001_v001-00068042-00000.root
 
-void Fun4All_CaloHistGen(const int nEvents = 1000, const std::string &fnameCalo = "DST_CALOFITTING_run3auau_new_newcdbtag_v008-00068042-00000.root", const std::string &outName = "commissioning.root", const std::string &dbtag = "ProdA_2024")//Constructor for Run 25 Au+Au
-//void Fun4All_CaloHistGen(const int nEvents = 1000, const std::string &fnameCalo = "DST_CALOFITTING_run2pp_ana509_2024p022_v001-00047334-00022.root", const std::string &outName = "commissioning.root", const std::string &dbtag = "ProdA_2024")//Constructor for Run 24 p+p
+void Fun4All_CaloHistGen(const int nEvents = 1000, const std::string &fnameCalo = "DST_CALOFITTING_run3auau_pro001_pcdb001_v001-00068042-00000.root", const std::string &outName = "commissioning.root", const std::string &dbtag = "newcdbtag")
 {
   Fun4AllServer *se = Fun4AllServer::instance();
   se->Verbosity(0);
   recoConsts *rc = recoConsts::instance();
   
-  pair<int, int> runseg = Fun4AllUtils::GetRunSegment(fnameCalo);
+  std::pair<int, int> runseg = Fun4AllUtils::GetRunSegment(fnameCalo);
   int runnumber = runseg.first;
 
   bool isAuAu = false;
@@ -50,9 +50,9 @@ void Fun4All_CaloHistGen(const int nEvents = 1000, const std::string &fnameCalo 
     }
 
   
-  rc -> set_StringFlag("CDB_GLOBALTAG",dbtag);
-  rc -> set_uint64Flag("TIMESTAMP",runnumber);
-  CDBInterface::instance() -> Verbosity(1);
+  rc->set_StringFlag("CDB_GLOBALTAG",dbtag);
+  rc->set_uint64Flag("TIMESTAMP",runnumber);
+  CDBInterface::instance()->Verbosity(1);
 
   gSystem->Load("libg4dst");
   
