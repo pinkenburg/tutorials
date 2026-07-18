@@ -51,9 +51,9 @@ void Fun4All_CaloHistGen(const int nEvents = 1000, const std::string &fnameCalo 
     }
 
   
-  rc -> set_StringFlag("CDB_GLOBALTAG",dbtag);
-  rc -> set_uint64Flag("TIMESTAMP",runnumber);
-  CDBInterface::instance() -> Verbosity(1);
+  rc->set_StringFlag("CDB_GLOBALTAG",dbtag);
+  rc->set_uint64Flag("TIMESTAMP",runnumber);
+  CDBInterface::instance()->Verbosity(1);
 
   gSystem->Load("libg4dst");
   
